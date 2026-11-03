@@ -1,169 +1,56 @@
-<!DOCTYPE html>
+
+from pathlib import Path
+html = """<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FIKA – Famille Ikiyeri Kivyara Akabido. Une initiative burundaise fondée sur l'épargne, la solidarité et le développement économique collectif.">
-  <meta name="theme-color" content="#123c2b">
-  <title>FIKA Burundi | Petites contributions, grand patrimoine</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--green:#123c2b;--green2:#1d5b3d;--gold:#d8ad54;--cream:#f7f5ed;--ink:#1c2922;--muted:#68756d;--white:#fff}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:'DM Sans',sans-serif;color:var(--ink);line-height:1.65;background:#fff}
-    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
-    .container{width:min(1160px,92%);margin:auto}
-    .topbar{background:#0b2c20;color:#e9eee9;font-size:13px;padding:8px 0}
-    .topbar .container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);box-shadow:0 3px 18px #102c1b12}
-    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .brand{display:flex;align-items:center;gap:11px;color:var(--green);font-weight:800;letter-spacing:2px;font-size:23px}
-    .brand small{display:block;font-size:9px;letter-spacing:1.1px;font-weight:600;color:#7a806f;margin-top:-5px}
-    .mark{width:48px;height:48px;border-radius:50%;background:var(--green);display:grid;place-items:center;border:2px solid var(--gold)}
-    .mark svg{width:31px;height:31px}
-    .links{display:flex;align-items:center;gap:24px;font-size:13px;font-weight:700;color:#34463b}
-    .links a:hover{color:#b48631}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 21px;border-radius:5px;background:var(--gold);color:#17291e;font-weight:800;font-size:13px;transition:.2s}
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.04)}.btn.dark{background:var(--green);color:white}
-    .menu{display:none;border:0;background:none;font-size:27px;color:var(--green)}
-    .hero{min-height:610px;display:flex;align-items:center;color:white;position:relative;background:linear-gradient(90deg,rgba(8,39,26,.91),rgba(8,39,26,.66) 52%,rgba(8,39,26,.18)),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=85') center/cover}
-    .hero-content{max-width:720px;padding:100px 0}
-    .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:2.5px;font-weight:800;font-size:12px}
-    h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.15}
-    h1{font-size:clamp(42px,6vw,70px);margin:18px 0 22px;max-width:760px}
-    .hero p{font-size:18px;max-width:620px;color:#edf3ed;margin-bottom:30px}
-    .hero-actions{display:flex;gap:13px;flex-wrap:wrap}.btn.outline{background:transparent;border:1px solid #ffffff9c;color:#fff}
-    .intro-strip{background:var(--cream);padding:26px 0}.strip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;text-align:center}
-    .strip-grid strong{display:block;color:var(--green);font-family:'Playfair Display',serif;font-size:22px}.strip-grid span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-    section{padding:88px 0}.section-head{text-align:center;max-width:720px;margin:0 auto 45px}.section-head h2{font-size:clamp(32px,4vw,46px);color:var(--green);margin:10px 0 14px}.section-head p{color:var(--muted);margin:0}
-    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:58px;align-items:center}
-    .story-photo{position:relative}.story-photo img{width:100%;height:480px;object-fit:cover;border-radius:8px}
-    .photo-note{position:absolute;right:-18px;bottom:25px;background:var(--gold);padding:19px 23px;max-width:210px;border-radius:5px;color:#1d2b20;font-weight:800}
-    .story-copy h2{font-size:42px;color:var(--green);margin:10px 0 20px}.story-copy p{color:var(--muted)}
-    .quote{border-left:4px solid var(--gold);padding:13px 18px;margin:24px 0;background:var(--cream);font-weight:700;color:var(--green)}
-    .values{background:var(--cream)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .card{background:#fff;padding:27px 23px;border-radius:7px;box-shadow:0 8px 28px #183b2510}
-    .icon{width:47px;height:47px;border-radius:50%;background:#eaf1e9;color:var(--green);display:grid;place-items:center;font-size:23px;margin-bottom:18px}
-    .card h3{font-size:21px;color:var(--green);margin:0 0 9px}.card p{font-size:14px;color:var(--muted);margin:0}
-    .activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .activity{border-radius:8px;overflow:hidden;background:white;box-shadow:0 8px 28px #183b2510}
-    .activity img{height:220px;width:100%;object-fit:cover}.activity div{padding:22px}.activity h3{color:var(--green);font-size:22px;margin:0 0 8px}.activity p{font-size:14px;color:var(--muted);margin:0}
-    .project{background:var(--green);color:#fff}.project-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
-    .project h2{font-size:43px;margin:12px 0 18px}.project p{color:#dce8de}.project img{height:390px;width:100%;object-fit:cover;border-radius:8px}
-    .project-list{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:25px 0}.project-list div{border:1px solid #ffffff35;padding:15px;border-radius:5px}.project-list strong{display:block;color:var(--gold);font-size:21px}.project-list span{font-size:12px;color:#e2ebe3}
-    .partner{background:linear-gradient(90deg,#f7f5ed 0%,#f7f5ed 55%,#e8eee5 55%)}.partner-box{max-width:780px}.partner h2{font-size:44px;color:var(--green);margin:12px 0}.partner p{color:var(--muted);max-width:650px}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px}.contact-grid h2{font-size:40px;color:var(--green)}.contact-item{padding:14px 0;border-bottom:1px solid #e8ece7}.contact-item strong{display:block;color:var(--green)}.contact-item span{color:var(--muted)}
-    footer{background:#0b2c20;color:#d9e3dc;padding:45px 0 20px}.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:35px}.footer-grid h3{color:var(--gold);font-size:19px}.footer-grid p,.footer-grid a{font-size:13px;color:#d9e3dc}.footer-links{display:grid;gap:7px}.copyright{border-top:1px solid #ffffff22;margin-top:30px;padding-top:17px;font-size:12px;color:#aebdb2}
-    @media(max-width:850px){.links{display:none;position:absolute;top:82px;left:0;right:0;background:white;padding:20px 4%;flex-direction:column;align-items:flex-start;box-shadow:0 12px 20px #0001}.links.open{display:flex}.menu{display:block}.nav>.btn{display:none}.story-grid,.project-grid,.contact-grid{grid-template-columns:1fr}.story-photo img{height:360px}.photo-note{right:10px}.cards{grid-template-columns:repeat(2,1fr)}.activities-grid{grid-template-columns:1fr 1fr}.partner{background:var(--cream)}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.hero{min-height:570px}.hero-content{padding:75px 0}.hero p{font-size:16px}.strip-grid{grid-template-columns:1fr;gap:13px}.strip-grid strong{font-size:19px}section{padding:65px 0}.cards,.activities-grid,.footer-grid{grid-template-columns:1fr}.story-copy h2,.project h2,.partner h2{font-size:34px}.project img{height:280px}.project-list{grid-template-columns:1fr 1fr}}
-  </style>
-</head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FIKA – Famille Ikiyeri Kivyara Akabido</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g:#075b38;--d:#043d29;--gold:#e0ad18;--ink:#17231d;--muted:#53625a;--cream:#f7f8f4}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:18px/1.65 'Nunito Sans',Arial,sans-serif;color:var(--ink)}
+h1,h2,h3,nav,.btn,.brand{font-family:Montserrat,Arial,sans-serif}a{color:inherit}.wrap{width:min(1180px,92%);margin:auto}
+header{position:sticky;top:0;background:#fff;z-index:10;border-bottom:1px solid #dce5dd}.navrow{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:12px 0}
+.brand{font-size:30px;font-weight:900;color:var(--g);text-decoration:none;line-height:1}.brand small{display:block;font-size:9px;color:var(--d);letter-spacing:.2px}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}nav a{text-decoration:none;font-size:12px;font-weight:800}nav a:hover{color:var(--g)}nav .navbtn{background:var(--g);color:white;padding:11px 15px;border-radius:8px}
+.hero{min-height:550px;display:flex;align-items:center;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.96) 35%,rgba(255,255,255,.18) 100%),url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1800&q=85') center/cover}
+.herotxt{max-width:600px;padding:65px 0}.eyebrow{color:#b48808;font-weight:900;letter-spacing:2px;text-transform:uppercase;font-size:14px}
+h1{font-size:clamp(60px,9vw,100px);line-height:.95;letter-spacing:-4px;color:var(--g);margin:12px 0}
+.hero h2{font-size:clamp(25px,3vw,36px);line-height:1.2;color:var(--d);margin:12px 0}.hero p{font-size:21px;max-width:540px}
+.btn{display:inline-block;text-decoration:none;padding:14px 20px;border-radius:9px;font-size:14px;font-weight:900;margin:8px 8px 0 0}.green{background:var(--g);color:#fff}.gold{background:var(--gold);color:#18251c}
+section{padding:72px 0}.cream{background:var(--cream)}.title{text-align:center;margin:0 auto 35px;max-width:780px}.title h2,h2{font-size:clamp(30px,4vw,44px);line-height:1.15;color:var(--g);font-weight:900;letter-spacing:-1px;margin:8px 0 12px}.title p{font-size:19px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}.photo{width:100%;height:360px;object-fit:cover;border-radius:16px}.story p{font-size:19px;color:#35433b}.quote{padding:15px 20px;border-left:5px solid var(--gold);background:#fff;font-size:20px;font-weight:800;color:var(--d)}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}.value,.card,.contact{background:#fff;border:1px solid #dce5dd;border-radius:14px;overflow:hidden}.value{padding:20px}.value b{font:800 17px Montserrat;color:var(--g)}.value p{font-size:16px;color:var(--muted);margin-bottom:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card img{width:100%;height:205px;object-fit:cover;display:block}.card div{padding:20px}.card h3{font-size:19px;color:var(--g);margin:0 0 8px}.card p{font-size:17px;color:var(--muted);margin:0}
+.stats{background:var(--d);color:white}.stats h2{color:white}.statgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat{text-align:center;border:1px solid #ffffff40;padding:22px 12px;border-radius:12px}.stat strong{display:block;color:var(--gold);font:900 clamp(25px,4vw,39px) Montserrat}.stat span{font-size:14px;font-weight:800}
+.projectimg{width:100%;height:330px;object-fit:cover;border-radius:15px}.partner{background:linear-gradient(135deg,var(--g),var(--d));color:white;text-align:center}.partner h2{color:white}.partner p{font-size:20px;max-width:850px;margin:0 auto 22px}
+.contactgrid{display:grid;grid-template-columns:1fr 1fr;gap:25px}.contact{padding:25px;background:var(--cream)}.contact h3{color:var(--g);font-size:22px}.contact a{color:var(--g);font-weight:800;text-decoration:none}
+footer{background:#022f20;color:white;text-align:center;padding:28px 0}footer strong{color:var(--gold)}footer p{margin:5px}
+@media(max-width:850px){.values,.statgrid{grid-template-columns:repeat(2,1fr)}.navrow{align-items:flex-start;flex-direction:column}.hero{background-position:60% center}}
+@media(max-width:620px){body{font-size:17px}.grid2,.contactgrid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.hero{min-height:560px;background-image:linear-gradient(90deg,rgba(255,255,255,.97),rgba(255,255,255,.82)),url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=80')}.photo{height:260px}.values{grid-template-columns:1fr 1fr}section{padding:52px 0}nav{gap:10px 14px}nav a{font-size:11px}}
+</style></head>
 <body>
-  <div class="topbar"><div class="container"><span>🇧🇮 Bujumbura, Burundi</span><span>Solidarité • Épargne • Développement</span></div></div>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#accueil" aria-label="FIKA accueil">
-        <span class="mark"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 31V17" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M20 21C9 21 8 12 8 12s10-2 12 9Z" fill="#d8ad54"/><path d="M20 17c1-9 12-10 12-10s1 10-12 10Z" fill="#8fbd83"/><path d="M11 32h18" stroke="#d8ad54" stroke-width="2.5" stroke-linecap="round"/></svg></span>
-        <span>FIKA<small>FAMILLE IKIYERI KIVYARA AKABIDO</small></span>
-      </a>
-      <nav class="links" id="navlinks">
-        <a href="#accueil">Accueil</a><a href="#histoire">Notre histoire</a><a href="#valeurs">Nos valeurs</a><a href="#activites">Activités</a><a href="#projets">Projets</a><a href="#contact">Contact</a>
-      </nav>
-      <a class="btn" href="#partenaires">Devenir partenaire</a>
-      <button class="menu" aria-label="Ouvrir le menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero" id="accueil">
-      <div class="container"><div class="hero-content">
-        <div class="eyebrow">Une initiative née au Burundi • Depuis le 1er janvier 2026</div>
-        <h1>Ensemble, transformons les petites contributions en grand patrimoine.</h1>
-        <p>FIKA rassemble des personnes autour d'une même ambition : épargner, entreprendre et construire un avenir économique plus solide grâce à la solidarité.</p>
-        <div class="hero-actions"><a class="btn" href="#histoire">Découvrir notre histoire</a><a class="btn outline" href="#partenaires">Collaborer avec FIKA</a></div>
-      </div></div>
-    </section>
-
-    <div class="intro-strip"><div class="container strip-grid">
-      <div><strong>01 janvier 2026</strong><span>Date de création</span></div>
-      <div><strong>Bujumbura, Burundi</strong><span>Notre origine</span></div>
-      <div><strong>Une vision collective</strong><span>Notre ambition</span></div>
-    </div></div>
-
-    <section id="histoire"><div class="container story-grid">
-      <div class="story-photo">
-        <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1100&q=85" alt="Des amis réunis autour d'une idée commune" loading="lazy">
-        <div class="photo-note">Une petite idée peut faire naître un grand projet.</div>
-      </div>
-      <div class="story-copy">
-        <div class="eyebrow">Notre histoire</div>
-        <h2>Tout a commencé par deux bières.</h2>
-        <p>FIKA – Famille Ikiyeri Kivyara Akabido – est née le 1er janvier 2026 à Bujumbura, au Burundi, d'une réflexion simple entre des amis qui avaient l'habitude de se retrouver dans un bar.</p>
-        <p>Ils dépensaient souvent 10 000 FBu pour acheter deux bières et en offrir parfois à des personnes qu'ils ne connaissaient pas. Un jour, ils ont décidé de changer cette habitude : et si cette somme était plutôt mise en commun pour bâtir quelque chose de durable ?</p>
-        <p>L'idée d'« Akabido » est devenue le symbole de cette richesse future : un patrimoine qui peut grandir grâce à de petites contributions régulières, à la discipline et à l'entraide.</p>
-        <div class="quote">« Ce que nous dépensions ensemble hier peut devenir le patrimoine qui nous soutiendra demain. »</div>
-        <p>FIKA veut faire de cette idée un mouvement concret d'épargne, d'initiative économique et de développement collectif, pour aujourd'hui et pour les années à venir.</p>
-      </div>
-    </div></section>
-
-    <section class="values" id="valeurs"><div class="container">
-      <div class="section-head"><div class="eyebrow">Ce qui nous guide</div><h2>Nos valeurs fondamentales</h2><p>La confiance et l'engagement de chacun sont au cœur de notre démarche collective.</p></div>
-      <div class="cards">
-        <article class="card"><div class="icon">🤝</div><h3>Solidarité</h3><p>Nous avançons ensemble et nous nous soutenons dans les initiatives qui renforcent notre communauté.</p></article>
-        <article class="card"><div class="icon">🌱</div><h3>Épargne</h3><p>Nous valorisons les petites contributions régulières comme point de départ d'un avenir plus stable.</p></article>
-        <article class="card"><div class="icon">🔒</div><h3>Confiance</h3><p>Nous encourageons la responsabilité, la transparence et le respect des engagements communs.</p></article>
-        <article class="card"><div class="icon">📈</div><h3>Développement</h3><p>Nous voulons transformer les idées et les ressources disponibles en opportunités économiques durables.</p></article>
-      </div>
-    </div></section>
-
-    <section id="activites"><div class="container">
-      <div class="section-head"><div class="eyebrow">Agir ensemble</div><h2>Nos domaines d'action</h2><p>FIKA développe une dynamique collective autour de l'épargne et des initiatives génératrices de revenus.</p></div>
-      <div class="activities-grid">
-        <article class="activity"><img src="https://images.unsplash.com/photo-1499529112087-3cb3b73娱乐平台开户?auto=format&fit=crop&w=900&q=80" alt="Agriculture et cultures" loading="lazy"><div><h3>Agriculture</h3><p>Encourager les activités agricoles, la production maraîchère et les projets agroalimentaires.</p></div></article>
-        <article class="activity"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85" alt="Réunion de travail et entrepreneuriat" loading="lazy"><div><h3>Entrepreneuriat</h3><p>Soutenir les idées d'entreprise, les activités commerciales et les initiatives créatrices de revenus.</p></div></article>
-        <article class="activity"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=85" alt="Planification de l'épargne et des finances" loading="lazy"><div><h3>Épargne et entraide</h3><p>Promouvoir l'éducation financière, l'épargne collective et l'accès responsable au crédit entre membres.</p></div></article>
-      </div>
-    </div></section>
-
-    <section class="project" id="projets"><div class="container project-grid">
-      <div><div class="eyebrow">Cap sur 2027</div><h2>FIKA Modern Agriculture & Agribusiness Project</h2>
-        <p>FIKA souhaite développer un projet agricole moderne qui combine production, apprentissage et création d'opportunités économiques. Le projet vise à mobiliser des partenaires et des ressources pour soutenir sa mise en œuvre.</p>
-        <div class="project-list">
-          <div><strong>50</strong><span>Personnes visées par le projet</span></div>
-          <div><strong>50 000 USD</strong><span>Objectif de financement recherché</span></div>
-        </div>
-        <p><small>Ces chiffres représentent les objectifs prévisionnels du projet et non un financement déjà obtenu.</small></p>
-        <a class="btn" href="#partenaires">Soutenir le projet</a>
-      </div>
-      <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=85" alt="Champ agricole et production" loading="lazy">
-    </div></section>
-
-    <section class="partner" id="partenaires"><div class="container"><div class="partner-box">
-      <div class="eyebrow">Construisons l'avenir ensemble</div>
-      <h2>Devenez partenaire de FIKA</h2>
-      <p>Nous souhaitons établir des collaborations avec des organisations, entreprises, institutions, investisseurs et acteurs du développement qui partagent notre intérêt pour l'entrepreneuriat, l'agriculture, l'épargne et l'autonomisation économique.</p>
-      <p>Partage de compétences, formations, équipements, accompagnement technique ou partenariat de projet : ouvrons le dialogue.</p>
-      <a class="btn dark" href="mailto:famillefikafika@gmail.com?subject=Partenariat%20avec%20FIKA">Proposer un partenariat</a>
-    </div></div></section>
-
-    <section id="contact"><div class="container contact-grid">
-      <div><div class="eyebrow">Restons en contact</div><h2>Parlons de vos idées et de nos projets.</h2><p style="color:var(--muted)">Vous souhaitez en savoir plus sur FIKA ou discuter d'une collaboration ? Contactez-nous.</p></div>
-      <div>
-        <div class="contact-item"><strong>Adresse</strong><span>Quartier Songa, Kamenge, Bujumbura, Burundi</span></div>
-        <div class="contact-item"><strong>Email</strong><span><a href="mailto:famillefikafika@gmail.com">famillefikafika@gmail.com</a></span></div>
-        <div class="contact-item"><strong>Téléphone / WhatsApp</strong><span><a href="https://wa.me/25768890522">+257 68 890 522</a></span></div>
-        <div class="contact-item"><strong>Organisation</strong><span>FIKA – Famille Ikiyeri Kivyara Akabido</span></div>
-      </div>
-    </div></section>
-  </main>
-
-  <footer><div class="container">
-    <div class="footer-grid">
-      <div><div class="brand" style="color:white"><span class="mark"><svg viewBox="0 0 40 40" fill="none"><path d="M20 31V17" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><path d="M20 21C9 21 8 12 8 12s10-2 12 9Z" fill="#d8ad54"/><path d="M20 17c1-9 12-10 12-10s1 10-12 10Z" fill="#8fbd83"/><path d="M11 32h18" stroke="#d8ad54" stroke-width="2.5" stroke-linecap="round"/></svg></span><span>FIKA<small style="color:#d9e3dc">FAMILLE IKIYERI KIVYARA AKABIDO</small></span></div><p>Petites contributions, grand patrimoine, avenir meilleur.</p></div>
-      <div><h3>Navigation</h3><div class="footer-links"><a href="#histoire">Notre histoire</a><a href="#valeurs">Nos valeurs</a><a href="#activites">Nos activités</a><a href="#projets">Nos projets</a></div></div>
-      <div><h3>Contact</h3><div class="footer-links"><a href="mailto:famillefikafika@gmail.com">famillefikafika@gmail.com</a><a href="https://wa.me/25768890522">+257 68 890 522</a><span>Kamenge, Bujumbura – Burundi</span></div></div>
-    </div>
-    <div class="copyright">© 2026 FIKA – Famille Ikiyeri Kivyara Akabido. Tous droits réservés.</div>
-  </div></footer>
-</body>
-</html>
+<header><div class="wrap navrow"><a class="brand" href="#home">✿ FIKA<small>FAMILLE IKIYERI KIVYARA AKABIDO</small></a>
+<nav><a href="#home">ACCUEIL</a><a href="#histoire">NOTRE HISTOIRE</a><a href="#activites">ACTIVITÉS</a><a href="#projets">PROJETS</a><a href="#partenaires">PARTENAIRES</a><a href="#contact">CONTACT</a><a class="navbtn" href="#contact">REJOIGNEZ-NOUS</a></nav></div></header>
+<main>
+<section class="hero" id="home"><div class="wrap"><div class="herotxt"><div class="eyebrow">Ensemble, construisons demain</div><h1>FIKA</h1><h2>FAMILLE IKIYERI KIVYARA AKABIDO</h2><h2>Petites contributions,<br>grand patrimoine,<br>avenir meilleur.</h2><p>Nous unissons nos efforts pour développer l’épargne, la solidarité et l’entrepreneuriat au sein de notre communauté.</p><a class="btn green" href="#histoire">DÉCOUVRIR FIKA</a><a class="btn gold" href="#partenaires">DEVENIR PARTENAIRE</a></div></div></section>
+<section class="cream story" id="histoire"><div class="wrap"><div class="grid2"><div><div class="eyebrow">Qui sommes-nous ?</div><h2>LA NAISSANCE DE FIKA</h2><p>FIKA est née le <b>1er janvier 2026</b>, à Bujumbura, d’une idée simple entre amis. Nous avions l’habitude de nous retrouver le soir dans un bar et de dépenser parfois 10 000 FBu pour deux bières.</p><p>Un jour, nous avons décidé de transformer cette dépense en contribution collective. Au lieu de dépenser cet argent, pourquoi ne pas l’épargner et l’investir ensemble pour construire quelque chose qui dure ?</p><p>C’est ainsi qu’est née l’idée d’<b>Akabido</b>, symbole d’un patrimoine commun et d’un avenir construit grâce à de petites contributions régulières.</p><div class="quote">« L’argent dépensé aujourd’hui peut devenir le patrimoine de demain. »</div></div><img class="photo" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=85" alt="Amis réunis autour d'une table"></div>
+<div class="values"><div class="value"><b>◎ NOTRE VISION</b><p>Construire un patrimoine durable et améliorer les conditions de vie de nos membres.</p></div><div class="value"><b>◉ NOTRE MISSION</b><p>Promouvoir l’épargne, l’entraide et l’entrepreneuriat.</p></div><div class="value"><b>◇ NOS VALEURS</b><p>Solidarité, confiance, transparence, discipline et développement.</p></div><div class="value"><b>♡ NOTRE DEVISE</b><p>Petites contributions, grand patrimoine, avenir meilleur.</p></div></div></div></section>
+<section id="activites"><div class="wrap"><div class="title"><div class="eyebrow">Ce que nous faisons</div><h2>NOS ACTIVITÉS</h2><p>Des initiatives collectives pour renforcer les capacités des membres et créer des opportunités durables.</p></div><div class="cards">
+<article class="card"><img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=900&q=80" alt="Épargne"><div><h3>ÉPARGNE COLLECTIVE</h3><p>Des contributions régulières pour constituer un patrimoine commun et financer nos projets.</p></div></article>
+<article class="card"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Commerce"><div><h3>CRÉDIT SOLIDAIRE</h3><p>Un accès au crédit entre membres, selon les règles et conditions de l’association.</p></div></article>
+<article class="card"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Marché"><div><h3>COMMERCE</h3><p>Soutenir les petites activités commerciales et les initiatives génératrices de revenus.</p></div></article>
+<article class="card"><img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80" alt="Agriculture"><div><h3>AGRICULTURE</h3><p>Développer des projets agricoles et contribuer à la production locale.</p></div></article>
+<article class="card"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80" alt="Formation"><div><h3>FORMATION</h3><p>Partager les connaissances et renforcer les compétences des membres.</p></div></article>
+<article class="card"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80" alt="Solidarité"><div><h3>SOLIDARITÉ</h3><p>Promouvoir l’entraide, la responsabilité et le soutien mutuel dans la communauté.</p></div></article>
+</div></div></section>
+<section class="stats"><div class="wrap"><div class="title"><div class="eyebrow">Notre engagement collectif</div><h2>FIKA EN QUELQUES CHIFFRES</h2></div><div class="statgrid"><div class="stat"><strong>11</strong><span>MEMBRES</span></div><div class="stat"><strong>22 000 000 FBu</strong><span>FONDS DÉCLARÉS</span></div><div class="stat"><strong>5 % / mois</strong><span>INTÉRÊT SUR CRÉDIT</span></div><div class="stat"><strong>3 mois</strong><span>DURÉE MAXIMALE DE REMBOURSEMENT</span></div></div></div></section>
+<section id="projets"><div class="wrap"><div class="title"><div class="eyebrow">Préparer l’avenir</div><h2>NOS PROJETS</h2><p>Des initiatives concrètes pour renforcer l’autonomie économique et créer des opportunités.</p></div><div class="grid2"><img class="projectimg" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&q=85" alt="Partenaires travaillant ensemble"><div><h2>CAP SUR 2027</h2><p>FIKA souhaite développer des projets dans l’agriculture moderne, le commerce et l’entrepreneuriat, tout en recherchant des partenaires capables d’apporter expertise, formation, équipements et accompagnement.</p><p>Notre ambition est de faire grandir les initiatives locales et de créer progressivement des activités génératrices d’emplois.</p><a class="btn green" href="#contact">PARLONS DE NOTRE PROJET</a></div></div></div></section>
+<section class="partner" id="partenaires"><div class="wrap"><div class="eyebrow">Construisons ensemble</div><h2>DEVENIR PARTENAIRE DE FIKA</h2><p>Nous sommes ouverts aux collaborations avec les associations, ONG, entreprises, institutions, investisseurs et partenaires internationaux intéressés par l’épargne communautaire, l’agriculture, la formation et l’entrepreneuriat au Burundi.</p><a class="btn gold" href="mailto:famillefikafika@gmail.com?subject=Partenariat%20avec%20FIKA">PROPOSER UN PARTENARIAT</a></div></section>
+<section id="contact"><div class="wrap"><div class="title"><div class="eyebrow">Restons en contact</div><h2>CONTACTEZ-NOUS</h2><p>Vous souhaitez rejoindre FIKA, en savoir plus ou discuter d’un partenariat ? Écrivez-nous.</p></div><div class="contactgrid"><div class="contact"><h3>NOS COORDONNÉES</h3><p><b>Adresse :</b><br>Kamenge, Quartier Songa, 6ème Avenue, n° 8<br>Bujumbura, Burundi</p><p><b>Téléphone / WhatsApp :</b><br><a href="https://wa.me/25768890522">+257 68 890 522</a></p><p><b>E-mail :</b><br><a href="mailto:famillefikafika@gmail.com">famillefikafika@gmail.com</a></p></div><div class="contact"><h3>NOTRE ENGAGEMENT</h3><p>Chaque contribution, chaque idée et chaque partenariat peut aider à bâtir un avenir plus solide.</p><p><b>Petites contributions, grand patrimoine, avenir meilleur.</b></p><a class="btn green" href="https://wa.me/25768890522?text=Bonjour%20FIKA%2C%20je%20souhaite%20avoir%20plus%20d%27informations.">NOUS ÉCRIRE SUR WHATSAPP</a></div></div></div></section>
+</main><footer><div class="wrap"><strong>FIKA – FAMILLE IKIYERI KIVYARA AKABIDO</strong><p>Ensemble, nous sommes plus forts.</p><p>© 2026 FIKA. Tous droits réservés.</p></div></footer>
+</body></html>"""
+path = Path("/mnt/data/FIKA_SITE_CODE_COMPLET.html")
+path.write_text(html, encoding="utf-8")
+print(f"Fichier créé : {path} — {len(html):,} caractères")
